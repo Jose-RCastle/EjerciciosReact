@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ddd",
     padding: 10,
     borderRadius: 8,
-    marginVertical: 5,
     alignItems: "center",
+    marginVertical: 5,
   },
   text: {
     fontWeight: "bold",
