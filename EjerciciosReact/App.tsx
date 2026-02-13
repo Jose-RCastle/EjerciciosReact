@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import CustomInput from "./components/CustomInput";
 import CustomButton from "./components/CustomButton";
 
 export default function App() {
 
-  /* ========= EJERCICIO 1 ========= */
+  /*1 */
   const [usuario, setUsuario] = useState({
     nombre: "",
     edad: ""
@@ -15,19 +15,19 @@ export default function App() {
   const edadValida = usuario.edad !== "" && !isNaN(Number(usuario.edad));
 
 
-  /* ========= EJERCICIO 2 ========= */
+  /*2*/
   const [contador, setContador] = useState(0);
   const esPar = contador % 2 === 0;
 
 
-  /* ========= EJERCICIO 3 ========= */
+  /*3 */
   const [mostrarDetalles, setMostrarDetalles] = useState(false);
 
 
   return (
     <View style={styles.container}>
 
-      {/* ================= E1 ================= */}
+      {/*E1 */}
       <Text style={styles.titulo}>Ejercicio 1</Text>
 
       <CustomInput
@@ -53,7 +53,7 @@ export default function App() {
 
 
 
-      {/* ================= E2 ================= */}
+      {/*E2 */}
       <Text style={styles.titulo}>Ejercicio 2</Text>
 
       <Text style={{ fontSize: 22 }}>{contador}</Text>
@@ -73,7 +73,7 @@ export default function App() {
 
 
 
-      {/* ================= E3 ================= */}
+      {/*E3 */}
       <Text style={styles.titulo}>Ejercicio 3</Text>
 
       <CustomButton
@@ -85,7 +85,7 @@ export default function App() {
         <View style={{ alignItems: "center" }}>
           <Text>Detalles del usuario...</Text>
           <Image
-            source={{ uri: "https://picsum.photos/200" }}
+            source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }}
             style={{ width: 150, height: 150 }}
           />
         </View>
