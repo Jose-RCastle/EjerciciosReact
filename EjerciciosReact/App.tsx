@@ -1,20 +1,113 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+
+import CustomInput from "./components/CustomInput";
+import CustomButton from "./components/CustomButton";
 
 export default function App() {
+
+  /* ========= EJERCICIO 1 ========= */
+  const [usuario, setUsuario] = useState({
+    nombre: "",
+    edad: ""
+  });
+
+  const edadValida = usuario.edad !== "" && !isNaN(Number(usuario.edad));
+
+
+  /* ========= EJERCICIO 2 ========= */
+  const [contador, setContador] = useState(0);
+  const esPar = contador % 2 === 0;
+
+
+  /* ========= EJERCICIO 3 ========= */
+  const [mostrarDetalles, setMostrarDetalles] = useState(false);
+
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+      {/* ================= E1 ================= */}
+      <Text style={styles.titulo}>Ejercicio 1</Text>
+
+      <CustomInput
+        placeholder="Nombre"
+        value={usuario.nombre}
+        onChange={(t) => setUsuario({ ...usuario, nombre: t })}
+      />
+
+      <CustomInput
+        placeholder="Edad"
+        value={usuario.edad}
+        keyboardType="numeric"
+        onChange={(t) => setUsuario({ ...usuario, edad: t })}
+      />
+
+      {edadValida && (
+        <Text>
+          Hola, {usuario.nombre}. Tienes {usuario.edad} años.
+        </Text>
+      )}
+
+      {!edadValida && <Text style={{ color: "red" }}>Edad inválida</Text>}
+
+
+
+      {/* ================= E2 ================= */}
+      <Text style={styles.titulo}>Ejercicio 2</Text>
+
+      <Text style={{ fontSize: 22 }}>{contador}</Text>
+
+      <CustomButton title="+1" onPress={() => setContador(contador + 1)} />
+      <CustomButton title="-1" onPress={() => setContador(contador - 1)} />
+
+      {contador < 0 && (
+        <Text style={{ color: "red" }}>
+          No se recomienda valores negativos
+        </Text>
+      )}
+
+      <Text style={{ color: esPar ? "blue" : "purple" }}>
+        {esPar ? "Número par" : "Número impar"}
+      </Text>
+
+
+
+      {/* ================= E3 ================= */}
+      <Text style={styles.titulo}>Ejercicio 3</Text>
+
+      <CustomButton
+        title={mostrarDetalles ? "Ocultar detalles" : "Mostrar detalles"}
+        onPress={() => setMostrarDetalles(!mostrarDetalles)}
+      />
+
+      {mostrarDetalles ? (
+        <View style={{ alignItems: "center" }}>
+          <Text>Detalles del usuario...</Text>
+          <Image
+            source={{ uri: "https://picsum.photos/200" }}
+            style={{ width: 150, height: 150 }}
+          />
+        </View>
+      ) : (
+        <Text>Detalles ocultos</Text>
+      )}
+
     </View>
   );
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+    marginTop: 40,
+  },
+  titulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 25,
   },
 });
